@@ -1,0 +1,37 @@
+<div class="container add-experiment-container">
+  <h2>Add Experiment</h2>
+  <form [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-1 label-n">
+        <b>N</b>
+      </div>
+      <div class="col">
+        <input formControlName="n" type="text" class="form-control input-n" placeholder="N" aria-label="N" aria-describedby="basic-addon1">
+      </div>
+    </div>
+
+    <ng-container *ngFor="let dist of distributions; let i = index" class="row">
+      <div *ngFor="let dist of distributions; let i = index" class="row">
+        <div class="col-2">
+          Distribution
+        </div>
+        <div class="col-2">
+          <select class="form-select" aria-label="Default select example" id="select_{{i}}">
+            <option value="Bernoulli">Bernoulli</option>
+            <option value="Gaussian">Gaussian</option>
+          </select>
+        </div>
+        <div *ngFor="let p of parameters[i]; let j = index" class="col">
+          <input type="text">
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="row">
+      <div class="col-3">
+        <button type="button" class="btn btn-primary">Add Distribution</button>
+      </div>
+    </div>
+  </form>
+
+</div>

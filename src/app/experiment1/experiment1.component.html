@@ -1,0 +1,158 @@
+<div class="container view-experiment-container">
+  <h2>View Experiment</h2>
+  <div class="row">
+    <h4>Environment</h4>
+    <div class="row">
+      <div *ngFor="let t of distributionList; let i = index" class="col distribution-col">
+        {{t}}
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="formGroup">
+  <div class="row">
+    <h4>Compare Algorithms</h4>
+  </div>
+  <div class="row">
+    <div class="col">
+      <select name="left-algorithm-select" id="left-algorithm-select" class="form-select"
+      formControlName="leftAlgorithm" (change)="updateLeft()">
+        <option *ngFor="let t of algorithmKeys; let i = index" value="{{t}}">
+          {{ experiment.algorithmMap[t] }}
+        </option>
+      </select>
+    </div>
+    <div class="col-6">
+
+    </div>
+    <div class="col">
+      <select name="right-algorithm-select" id="right-algorithm-select" class="form-select"
+      formControlName="rightAlgorithm" (change)="updateRight()">
+        <option *ngFor="let t of algorithmKeys; let i = index" value="{{t}}">
+          {{ experiment.algorithmMap[t] }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label for="customRange2" class="form-label">Time Step: {{timeStep}} </label>
+    <input type="range" class="form-range" min="1" max="{{n}}" id="customRange2"
+      (change)="updateTimeStep()" formControlName="stepChooser">
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="col">Mean Regret</td>
+            <td scope="col">{{leftAlgorithmDatum.meanRegret.toFixed(2)}} </td>
+          </tr>
+          <tr>
+            <td scope="col">% Optimal</td>
+            <td scope="col">{{leftAlgorithmDatum.percentOptimal.toFixed(2)}} </td>
+          </tr>
+          <tr>
+            <td scope="col">SD Regret</td>
+            <td scope="col">{{leftAlgorithmDatum.sdRegret.toFixed(2)}} </td>
+          </tr>
+          <tr>
+            <td scope="col">Upper Regret</td>
+            <td scope="col">{{leftAlgorithmDatum.upperRegret.toFixed(2)}} </td>
+          </tr>
+          <tr>
+            <td scope="col">Lower Regret</td>
+            <td scope="col">{{leftAlgorithmDatum.lowerRegret.toFixed(2)}} </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-6">
+      <div id="chartContainer">
+
+      </div>
+        <!-- <canvasjs-chart  (chartInstance)="getChartInstance($event)" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart> -->
+    </div>
+    <div class="col">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="col">Mean Regret</td>
+            <td scope="col">{{rightAlgorithmDatum.meanRegret.toFixed(2)}} </td>
+          </tr>
+          <tr>
+            <td scope="col">% Optimal</td>
+            <td scope="col">{{rightAlgorithmDatum.percentOptimal.toFixed(2)}} </td>
+          </tr>
+          <tr>
+            <td scope="col">SD Regret</td>
+            <td scope="col">{{rightAlgorithmDatum.sdRegret.toFixed(2)}} </td>
+          </tr>
+          <tr>
+            <td scope="col">Upper Regret</td>
+            <td scope="col">{{rightAlgorithmDatum.upperRegret.toFixed(2)}} </td>
+          </tr>
+          <tr>
+            <td scope="col">Lower Regret</td>
+            <td scope="col">{{rightAlgorithmDatum.lowerRegret.toFixed(2)}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4>Best Algorithms</h4>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Algorithm</th>
+            <th scope="col">Mean Regret</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of meanRegretList; let i = index" class='clickable-row'>
+            <td scope="col">{{t.algorithmName}}</td>
+            <td scope="col">{{t.value.toFixed(2)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Algorithm</th>
+            <th scope="col">Optimal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of percentOptimalList; let i = index" class='clickable-row'>
+            <td scope="col">{{t.algorithmName}}</td>
+            <td scope="col">{{t.value.toFixed(2)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </form>
+
+</div>

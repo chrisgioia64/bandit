@@ -1,0 +1,23 @@
+.view-experiment-container {
+  margin-top: 30px;
+  width: 800px;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 0.5em;
+  background-color: rgb(250, 250, 250);
+}
+
+.view-experiment-container h2 {
+  text-align: center;
+}
+
+.view-experiment-container h4 {
+  font-size: 20px;
+}
+
+.distribution-col {
+  text-align: center;
+}
+
+#chartContainer {
+  height: 300px;
+}

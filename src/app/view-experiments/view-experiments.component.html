@@ -1,0 +1,21 @@
+<div class="container view-experiment-container">
+  <h2>View Experiments</h2>
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">N</th>
+        <th scope="col">Bandit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of experiments; let i = index" class='clickable-row'>
+        <td scope="col"><a href="view/{{t.id}}">{{t.id}}</a></td>
+        <td scope="col">{{t.n}}</td>
+        <td scope="col">{{t.bandit}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>

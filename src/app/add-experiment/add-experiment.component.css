@@ -1,0 +1,19 @@
+.add-experiment-container {
+  margin-top: 30px;
+  width: 800px;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 0.5em;
+  background-color: rgb(250, 250, 250);
+}
+
+h2 {
+  text-align: center;
+}
+
+.input-n {
+  width: 80px;
+}
+
+.label-n {
+  border: 1px solid black;
+}
