@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class ExperimentService {
 
-  baseUrl : string = "http://localhost:8080/"
+  baseUrl : string = "http://bandit-env-5.eba-f2jzcegz.us-east-1.elasticbeanstalk.com:8080/"
+  // baseUrl : string = "http://localhost:8080/"
 
   constructor(private http: HttpClient) { }
 
