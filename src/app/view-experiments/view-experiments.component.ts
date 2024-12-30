@@ -18,18 +18,18 @@ export class ViewExperimentsComponent {
   ngOnInit(): void {
     console.log("Hello world");
     let observable = this.expService.getExperiments();
-    observable.subscribe( value => {
-      let keys = Object.keys(value);
-      for (let i = 0; i < keys.length; i++) {
-        let experiment = value[keys[i]];
+    observable.subscribe( experiments => {
+      // let keys = Object.keys(experiments);
+      console.log(experiments);
+      for (let i = 0; i < experiments.length; i++) {
+        let experiment = experiments[i];
         let dName = this.getDistributionName(experiment);
         console.log(experiment);
         // console.log(dName);
-        let n = this.getN(experiment);
+        // let n = this.getN(experiment);
         // console.log(n);
         let expermentInfo : ExperimentInfo = {
-          id : keys[i],
-          n : n,
+          id : experiment.id,
           bandit : dName
         };
         this.experiments.push(expermentInfo);
@@ -46,7 +46,7 @@ export class ViewExperimentsComponent {
 
   getDistributionName(experiment : any) {
     let str = "";
-    let d = experiment['banditEntity']['distributions'];
+    let d = experiment['distributions'];
     let keys = Object.keys(d);
     for (let i = 0; i < keys.length; i++) {
       let dName = d[keys[i]]['distributionName'];
