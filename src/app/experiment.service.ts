@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,12 @@ export class ExperimentService {
     let url = this.baseUrl + path + id;
     
     return this.http.get<any>(url, {  headers: this.baseHeaders })
+  }
+
+  submitExperiment(experimentData: any): Observable<any> {
+    let path = "submitExperiment";
+    let url = this.baseUrl + path
+    return this.http.post(url, experimentData);
   }
 
 }

@@ -1,0 +1,93 @@
+<div class="form-container">
+  <h2>Create Experiment</h2>
+  <form [formGroup]="experimentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="experimentName">Experiment Name</label>
+      <input
+        type="text"
+        id="experimentName"
+        formControlName="name"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="timeHorizon">Time Horizon (N)</label>
+      <input
+        type="range"
+        id="timeHorizon"
+        formControlName="timeHorizon"
+        class="form-control"
+        min="1"
+        max="100"
+      />
+      <div class="slider-value">{{ experimentForm.get('timeHorizon')?.value }}</div>
+    </div>
+
+    <div class="form-group">
+      <h3>Distributions and Parameters</h3>
+      <div
+        formArrayName="distributions"
+        *ngFor="let distributionGroup of distributions.controls; let i = index"
+        class="distribution-group"
+      >
+        <div [formGroupName]="i" class="dynamic-component">
+          <label for="distribution{{ i }}">Distribution {{ i + 1 }}</label>
+          <select
+            id="distribution{{ i }}"
+            formControlName="type"
+            class="form-control"
+            (change)="onDistributionChange(i)"
+          >
+            <option value="Bernoulli">Bernoulli</option>
+            <option value="Normal">Normal</option>
+          </select>
+
+          <div *ngIf="distributionGroup.get('type')?.value === 'Bernoulli'" class="form-group">
+            <label for="parameterP{{ i }}">Parameter p</label>
+            <input
+              type="number"
+              id="parameterP{{ i }}"
+              formControlName="p"
+              class="form-control"
+              min="0"
+              max="1"
+              step="0.01"
+            />
+          </div>
+
+          <div *ngIf="distributionGroup.get('type')?.value === 'Normal'" class="form-group">
+            <label for="mean{{ i }}">Mean</label>
+            <input
+              type="number"
+              id="mean{{ i }}"
+              formControlName="mean"
+              class="form-control"
+            />
+            <label for="stdDev{{ i }}">Standard Deviation</label>
+            <input
+              type="number"
+              id="stdDev{{ i }}"
+              formControlName="stdDev"
+              class="form-control"
+            />
+          </div>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="removeComponent(i)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary" (click)="addComponent()">
+        Add Distribution
+      </button>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="experimentForm.invalid">
+      Submit
+    </button>
+  </form>
+</div>

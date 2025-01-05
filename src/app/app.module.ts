@@ -8,12 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewExperimentsComponent } from './view-experiments/view-experiments.component';
 import { AddExperimentComponent } from './add-experiment/add-experiment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExperimentFormComponent } from './experiment-form/experiment-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewExperimentsComponent,
+    ExperimentFormComponent,
   ],
   imports: [
     BrowserModule,
